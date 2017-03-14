@@ -5,7 +5,7 @@
   "main": "hashaddress.js",
   "scripts": {
     "dev": "live-server --ignore=node_modules",
-    "test": "node hashaddress"
+    "test": "ELECTRON_ENABLE_LOGGING=1 ./node_modules/.bin/electron node_modules/electron-testrunner/ ./hashaddress.js"
   },
   "repository": {
     "type": "git",
@@ -17,9 +17,10 @@
     "url": "https://github.com/solsort/hashadress/issues"
   },
   "homepage": "https://hashadress.solsort.com/",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
+    "electron": "^1.6.3",
+    "electron-testrunner": "0.0.2",
     "live-server": "^1.2.0"
   }
 }
