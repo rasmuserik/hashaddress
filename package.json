@@ -5,7 +5,7 @@
   "main": "hashaddress.js",
   "scripts": {
     "dev": "live-server --ignore=node_modules",
-    "test": "xvfb-run -a ELECTRON_ENABLE_LOGGING=1 ./node_modules/.bin/electron node_modules/electron-testrunner/ ./hashaddress.js"
+    "test": "ELECTRON_ENABLE_LOGGING=1 xvfb-run -a ./node_modules/.bin/electron node_modules/electron-testrunner/ ./hashaddress.js"
   },
   "repository": {
     "type": "git",
