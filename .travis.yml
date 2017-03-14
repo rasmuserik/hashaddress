@@ -1,3 +1,10 @@
 language: node_js
 node_js:
 - node
+deploy:
+  provider: npm
+  email: npmjs@solsort.com
+  api_key:
+    secure: Mwf6uTYM3pt6DT5sRzqQDIet2cmIANfTX4DQoc+KF5LkKz/MlbBY5upyNuHM1amdIFgzdfaIrAg/sL/wWWIiTmn0p/J1SatPDMsuxPTMX8zHfbUsxXbC95iVktnUy4k+yL+KNB3BppAzazlnNTMe7spKQigufwoEH9q26MhcuvsApV3/QCpvbzFFwXM2d9H4QI8uUwj32cezKktyXZc4vwoewqq+mvdmIKv6wSqVT2JyC6QycHGhg3B2fv1i05GPw5q4WfY5oP3p9dUb3preM0jnJ8dXHh1ZwtwzX7szrFI61eO8JY3QofINZu5cyd8Dh0zyHb6p1TMupmhTUr9ODyN+zMVcUEBYXxPIunqY3yYASfJljndrzKQ/hljqxlsQ52mKm/2AsfTjurGAJT5JlUQVXHmpqhY3k+OMp6wYPsEJ3jxTaU+na6SRDp+Nsi6w+7VOvC6hnlOZp45htgIN7vrmtYdspNY8DZQ85fpkTWq6X4TUSR1FoMcSIQKwKWAtS52sfPDCE4LC9n+I5OpFaT1XeIeKMMLT2o05TikkSWszWZAz3p27ZsC1uYwhQSK7Pngiz0fsJ0pCVTsvUAiHcPSS7wsDCIeFiddVrYEbUy7aa0IKzbqsQtm9RuAkogN726rv4De9ZK/AKTgceAFGRRyNHaCX/8FvHn2fBFTa1mk=
+  on:
+    repo: solsort/hashaddress
