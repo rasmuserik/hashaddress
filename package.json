@@ -1,0 +1,25 @@
+{
+  "name": "hashaddress",
+  "version": "0.0.1",
+  "description": "",
+  "main": "hashaddress.js",
+  "scripts": {
+    "dev": "npm run liveserver",
+    "test": "echo \"Error: no test specified\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/solsort/hashadress.git"
+  },
+  "author": "RasmusErik Voel Jensen <npmjs@solsort.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/solsort/hashadress/issues"
+  },
+  "homepage": "https://hashadress.solsort.com/",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "live-server": "^1.2.0"
+  }
+}
