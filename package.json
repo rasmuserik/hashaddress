@@ -4,8 +4,8 @@
   "description": "",
   "main": "hashaddress.js",
   "scripts": {
-    "dev": "npm run liveserver",
-    "test": "echo \"Error: no test specified\" && exit 0"
+    "dev": "live-server --ignore=node_modules",
+    "test": "node hashaddress"
   },
   "repository": {
     "type": "git",
