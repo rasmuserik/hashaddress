@@ -20,7 +20,7 @@
   "dependencies": {},
   "devDependencies": {
     "electron": "^1.6.3",
-    "electron-testrunner": "0.0.2",
+    "electron-testrunner": "^0.0.3",
     "live-server": "^1.2.0"
   }
 }
