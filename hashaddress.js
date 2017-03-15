@@ -3,7 +3,7 @@
  */
 class HashAddress { // #
 
-  constructor(o) {
+  constructor(o) { // ##
     if(o instanceof Uint8Array && o.length === 32) {
       this.data = o;
     } else {
@@ -11,7 +11,7 @@ class HashAddress { // #
     }
   }
 
-  static async generate (src /*ArrayBuffer | String*/) {
+  static async generate (src /*ArrayBuffer | String*/) { // ##
     if(typeof src === 'string') {
       src = ascii2buf(src);
     }
@@ -19,7 +19,7 @@ class HashAddress { // #
     return new HashAddress(new Uint8Array(hash));
   }
 
-  equals(addr) {
+  equals(addr) { // ##
     for(let i = 0; i < 32; ++i) {
       if(this.data[i] !== addr.data[i]) {
         return false;
@@ -28,7 +28,7 @@ class HashAddress { // #
     return true;
   }
 
-  static async TEST_constructor_generate_equals() {
+  static async TEST_constructor_generate_equals() { // ##
     if(typeof crypto === 'undefined') {
       return;
     }
@@ -39,32 +39,32 @@ class HashAddress { // #
     !a.equals(c) || throwError('equals2');
   }
 
-  static fromArrayBuffer(buf) {
+  static fromArrayBuffer(buf) { // ##
     return new HashAddress(new Uint8Array(buf));
   }
 
-  static fromString(str) {
+  static fromString(str) { // ##
     return HashAddress.fromArrayBuffer(ascii2buf(atob(str)));
   }
 
-  static fromHex(str) {
+  static fromHex(str) {  // ##
     return HashAddress.fromArrayBuffer(hex2buf(str));
   }
 
-  toArrayBuffer() {
+  toArrayBuffer() { // ##
     return this.data.slice().buffer;
   }
 
-  toString() {
+  toString() { // ##
     return btoa(buf2ascii(this.toArrayBuffer()));
   }
 
-  toHex() {
+  toHex() { // ##
     return buf2hex(this.toArrayBuffer());
   }
 
 
-  static async TEST_from_toArrayBuffer_toString() {
+  static async TEST_from_toArrayBuffer_toString() { // ##
     let a = await HashAddress.generate('hello');
     let b = HashAddress.fromArrayBuffer(a.toArrayBuffer());
     let c = HashAddress.fromString(a.toString());
@@ -74,6 +74,7 @@ class HashAddress { // #
     x80.toHex().startsWith('800') || throwError();
   }
 
+  // ## .dist(addr)
   /*
    * xor-distance between two addresses, - with 24 significant bits, 
    * and with an offset such that the distance between `0x000..` 
@@ -97,6 +98,7 @@ class HashAddress { // #
     return 0;
   }
 
+  // ## distBit(addr)
   /* 
    * index of first bit in addr that is different. 
    */
@@ -104,6 +106,7 @@ class HashAddress { // #
     return HashAddress.distBit(this.dist(addr));
   }
 
+  // ## static distBit(addr)
   /*
    * addr1.logDist(addr2) === HashAddress.logDist(addr1.dist(addr2))
    */
@@ -111,7 +114,7 @@ class HashAddress { // #
     return 123 - Math.floor(Math.log2(dist));
   }
 
-  static TEST_dist() {
+  static TEST_dist() { // ##
     let h;
     let zero = 
       HashAddress.fromHex('0000000000000000000000000000000000000000000000000000000000000000');
@@ -131,8 +134,30 @@ class HashAddress { // #
     zero.distBit(h) === 4 || throwError();
   }
 
-  randomise(startBit) {
-    return new HashAddress(/*...*/);
+  // ## flipBitRandomise
+  /**
+   * Flip the bit at pos, and randomise every bit after that
+   */
+  flipBitRandomise(pos) {
+    let src = new Uint8Array(this.data);
+    let dst = src.slice();
+    let bytepos = pos >> 3;
+    crypto.getRandomValues(dst.subarray(bytepos));
+
+    let mask = 0xff80 >> (pos & 7);
+    let inverse = 0x80 >> (pos & 7);
+    dst[pos >> 3] = (src[bytepos] & mask) | (dst[bytepos] & ~mask) ^ inverse;
+
+    return new HashAddress(dst);
+  }
+
+  static TEST_flipBitRandomise() { // ##
+    let zero = 
+      HashAddress.fromHex('0000000000000000000000000000000000000000000000000000000000000000');
+
+    zero.flipBitRandomise(3).toHex().startsWith('1') || throwError();
+    zero.flipBitRandomise(7).toHex().startsWith('01') || throwError();
+    zero.flipBitRandomise(7+8).toHex().startsWith('0001') || throwError();
   }
 }
 
