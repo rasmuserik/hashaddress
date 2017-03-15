@@ -39,8 +39,12 @@ class HashAddress { // #
     !a.equals(c) || throwError('equals2');
   }
 
+  static fromUint8Array(buf) { // ##
+    return new HashAddress(buf.slice());
+  }
+
   static fromArrayBuffer(buf) { // ##
-    return new HashAddress(new Uint8Array(buf));
+    return HashAddress.fromUint8Array(new Uint8Array(buf));
   }
 
   static fromString(str) { // ##
