@@ -265,6 +265,9 @@ class HashAddress { // #
 if(typeof module !== 'undefined') {
   exports.HashAddress = HashAddress;
   exports.hashAddress = hashAddress;
+  exports.dist = dist;
+  exports.distBit = distBit;
+  exports.flipBitAndRandom = flipBitAndRandom;
   exports.TESTS = tests;
 }
 
