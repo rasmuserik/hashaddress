@@ -89,14 +89,9 @@ tests.TEST_flipBitAndRandom = () => {
   }
 }
 
-for(let k in tests) {
-  tests[k]();
-}
-
 // # Exports
 
 if(typeof module !== 'undefined') {
-  exports.HashAddress = HashAddress;
   exports.hashAddress = hashAddress;
   exports.dist = dist;
   exports.distBit = distBit;
