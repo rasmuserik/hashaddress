@@ -5,22 +5,21 @@
   "main": "hashaddress.js",
   "scripts": {
     "dev": "live-server --ignore=node_modules",
-    "test": "ELECTRON_ENABLE_LOGGING=1 xvfb-run -a ./node_modules/.bin/electron node_modules/electron-testrunner/ ./hashaddress.js"
+    "test": "electron-testrunner hashaddress.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/solsort/hashadress.git"
+    "url": "git+https://github.com/solsort/hashaddress.git"
   },
   "author": "RasmusErik Voel Jensen <npmjs@solsort.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/solsort/hashadress/issues"
+    "url": "https://github.com/solsort/hashaddress/issues"
   },
-  "homepage": "https://hashadress.solsort.com/",
+  "homepage": "https://hashaddress.solsort.com/",
   "dependencies": {},
   "devDependencies": {
-    "electron": "^1.6.3",
-    "electron-testrunner": "^0.0.3",
+    "electron-testrunner": "^0.1.0",
     "live-server": "^1.2.0"
   }
 }

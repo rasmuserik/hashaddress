@@ -42,6 +42,9 @@ class HashAddress { // #
   static fromUint8Array(buf) { // ##
     return new HashAddress(buf.slice());
   }
+  toUint8Array() { // ##
+    return this.data.slice();
+  }
 
   static fromArrayBuffer(buf) { // ##
     return HashAddress.fromUint8Array(new Uint8Array(buf));
@@ -163,8 +166,11 @@ class HashAddress { // #
     zero.flipBitRandomise(7).toHex().startsWith('01') || throwError();
     zero.flipBitRandomise(7+8).toHex().startsWith('0001') || throwError();
   }
-}
+}// exports #
 
+if(typeof module !== undefined) {
+  module.exports = HashAddress;
+}
 
 // # Utility functions
 
@@ -199,27 +205,3 @@ function buf2ascii(buf) { // ##
 function throwError(msg) { // ##
   throw new Error(msg);
 }
-
-// # Export + testrunner
-(()=>{
-  let runTest = (cls) => Promise.all(
-      Object.getOwnPropertyNames(HashAddress)
-      .filter(k => k.startsWith('TEST_'))
-      .map(k => (console.log(k), k))
-      .map(k => HashAddress[k]())
-      .map(v => Promise.resolve(v)));
-
-  if(typeof module !== 'undefined') {
-    module.exports = HashAddress;
-    if(require.main === module) {
-      runTest(HashAddress)
-        .then(() => process.exit(0))
-        .catch(e => {
-          console.log(e);
-          process.exit(0);
-        });
-    }
-  } else if(typeof RUNTEST_hashaddress !== 'undefind') {
-    runTest(HashAddress);
-  }
-})()
